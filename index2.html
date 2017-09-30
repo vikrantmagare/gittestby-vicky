@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <title></title>
+    <!-- <link rel="stylesheet" href="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"> -->
+    
+    
+    <!--build:css css/styles.min.css-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/print.css">
+    <!--endbuild-->
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <div class="col-md-6">
+        <form action="index.html">
+            <input type="text" name="fname">
+            <select class="mainSelect">
+                <option value="opt1" data-v="300">opt1</option>
+                <option value="opt2" data-v="200">opt1</option>
+                <option value="opt3" data-v="50">opt1</option>
+            </select>
+
+            <select class="subSelect">
+                
+            </select>
+            <div class="buget"></div>
+            <input type="text" name="number">
+            <input class="ten" type="submit" name="submit" style="display: none;">
+            <a class="triggerSubmit" href="javascript:void(0);">Submit</a>
+        </form>
+    </div>
+    
+    <!-- <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>  -->
+    
+    <!--build:js js/main.min.js -->
+    <script type="text/javascript" src="js/lib/jquery-1.12.4.min.js"></script>
+    <script src="js/lib/jquery-ui.js"></script>
+    <script src="js/lib/a-library.js"></script>
+    <script src="js/lib/another-library.js"></script>
+    <script src="js/main.js"></script>
+    <!-- endbuild -->
+    <script type="text/javascript">
+    json1 = {
+        "opt1": [
+            'opa1',
+            'opa2',
+            'opa3'
+        ],
+        "opt2": [
+            'cpa1',
+            'cpa2',
+            'cpa3'
+        ],
+        "opt3": [
+            'dpa1',
+            'dpa2',
+            'dpa3'
+        ],
+        
+    };
+    $('.triggerSubmit').on('click', function() {
+        $('input[type="submit"]').trigger('click');
+    });
+
+    $('.buget').slider({
+        value: 100,
+        min: 0,
+        max: 500,
+        slide: function(event, ui) {
+            $("input[name='number'").val(ui.value);
+        }
+    });
+
+
+
+
+
+
+
+    $('.mainSelect').on('change', function() {
+        console.log();
+        var tempa = $(this).val();
+        $('.buget').slider({ max: parseInt($(this).find(":selected").data('v')), value: 0 });
+        $('.subSelect').empty();
+
+        $.each(json1, function(i, item) {
+
+
+           
+
+            if (i == tempa) {
+                console.log(item);
+                $.each(item,function(i,it){
+                    $('.subSelect').append($('<option>',{
+                        value : it,
+                        text : it
+                    }));
+                });
+
+                return false;
+
+
+            }
+
+        });
+
+
+
+
+
+
+
+
+    });
+    </script>
+</body>
+
+</html>
